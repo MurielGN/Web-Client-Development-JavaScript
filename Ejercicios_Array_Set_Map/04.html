@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [];
+        for(let i = 0; i < 20; i++){
+            rand = Math.floor(Math.random()*51);
+            arr.push(rand);
+        }
+        alert(arr);
+
+        for(value of arr){
+            for(let j = 0; j < value; j++){
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+    </script>
+    
+</body>
+</html>

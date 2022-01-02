@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificar navegador de cliente</title>
+</head>
+<body onload="dimeNavegador()">
+    Tu navegador es: <input type="text" id="nav">
+    <script>
+        function dimeNavegador(){
+            var strUserAgent = navigator.userAgent;
+            alert(strUserAgent);
+            var navegador = "";
+            if(strUserAgent.indexOf("Chrome") > -1){
+                navegador = "Google Chrome";
+            }else if(strUserAgent.indexOf("Safari") > -1){
+                navegador = "Apple Safari";
+            }else if(strUserAgent.indexOf("MSIE") > -1){
+                navegador = "Microsoft Internet Explorer";
+            }else if(strUserAgent.indexOf("Firefox") > -1){
+                navegador = "Mozilla Firefox";
+            }else if(strUserAgent.indexOf("Edge") > -1){
+                navegador = "Microsoft Edge";
+            }
+            alert(navegador);
+            document.getElementById("nav").value = navegador;
+        }
+    </script>
+</body>
+</html>

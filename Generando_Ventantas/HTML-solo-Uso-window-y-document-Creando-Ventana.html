@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando una ventana nueva</title>
+</head>
+<body>
+    <p align="center"><b>CREA UN NUEVO DOCUMENTO HTML</b></p>
+    <center> 
+    <table border="0" cellpadding="0" cellspacing="0" height="108">
+        <tr> 
+            <td height="87" align="center"> 
+            <form name="FORMULARIO" > 
+                <input type="button" value="Documento con colores" name="B1" onclick="mostrar(1); pintapagina(1);"> 
+                <input type="button" value="Valores por defecto" name="B2" onclick= "mostrar(0); pintapagina(0);"><br> 
+                <textarea rows="4" name="area" cols="20" READONLY WRAP>Haz clic en uno de los botones</textarea> 
+            </form>
+            </td>
+        </tr> 
+    </table> 
+    </center> 
+    
+    <script>
+        var msg = "";
+        function mostrar(aux){
+            msg = "";
+            switch (aux) {
+                case 1:
+                    msg += "Fondo: Amarillo, \n";
+                    msg += "Color Texto: Azul, \n";
+                    msg += "Link: Rojo, \n";
+                    msg += "Kink visitados: Rosa.";
+                    break;
+
+                case 0:
+                    msg += "Fondo: Blanco, \n";
+                    msg += "Color Texto: Negro, \n";
+                    msg += "Link: Azul, \n";
+                    msg += "Kink visitados: Rojo.";
+                    break;
+            }
+
+            document.getElementsByName('area')[0].value = msg;
+        }
+
+        function pintapagina(aux){
+            let ventana = window.open("", "", "width=250,height=200");
+            let texto = "";
+            let colorF = "";
+            let colorT = "";
+            let link = "";
+            let linkV = "";
+            
+            switch (aux) {
+                case 1:
+                    colorF = "yellow";
+                    colorT = "blue";
+                    link = "red";
+                    linkV = "pink";                    
+                break;
+                case 0:
+                    colorF = "white";
+                    colorT = "black";
+                    link = "blue";
+                    linkV = "red";                    
+                break;
+            }
+
+            texto = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title><style>body{background-color:'+colorF+';color: '+colorT+';}a:link{color: '+link+';}a:visited{color: '+linkV+';}</style></head><body><h1>ESTA ES MI PAGINA WEB</h1><a href="https://www.w3schools.com/cssref/sel_visited.asp" target="_blank">Visita otro ejemplo</a></body></html>';
+            ventana.document.write(texto);
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palíndromos</title>
+</head>
+<body>
+    <textarea name="caja" id="caja" cols="30" rows="10"></textarea>
+    <br><br>
+    <button type="button" onclick=espalindromo()>palindromo</button>
+
+    <script>
+        var arrVoc = ['a', 'e', 'i', 'o', 'u'];
+        var arrVocAc = ['á', 'é', 'í', 'ó', 'ú'];
+        var arrVocDie = ['ä', 'ë', 'ï', 'ö', 'ü'];
+        var arrSig = ['!', '¡', '?', '¿', '.', ',', ':', ';', '\"', '\'', ];
+        var arreglo = new Map();
+        for(let i = 0; i< arrVoc.length; i++){
+            arreglo.set(arrVocAc[i], arrVoc[i]);
+        }
+        for(let i = 0; i< arrVoc.length; i++){
+            arreglo.set(arrVocDie[i], arrVoc[i]);
+        }
+        for(let i = 0; i< arrSig.length; i++){
+            arreglo.set(arrSig[i], '');
+        }
+        arreglo.set(' ',''); //Map arrelgo preparado
+
+        function espalindromo(){
+            var frase = document.getElementById("caja").value; //Obtengo la frase del formulario
+
+            frase = frase.toLowerCase(); //La dejo en minsuculas al completo
+
+            for([clave, valor] of arreglo){
+                frase = frase.replaceAll(clave, valor);
+            }//Remplazo las partes que no quiero con mi Map arreglo
+
+            //Copruebo si es palindormo
+            alert(frase);
+            for(let i = 0; i < Math.floor(frase.length/2); i++){
+                if(frase.charAt(i) != frase.charAt(frase.length-(i+1))){
+                    alert('No es un palindromo');
+                    return;
+                }
+            }
+            alert('ES es un palindromo');
+            
+        }
+
+        function isLetter(str) {
+            return str.length === 1 && str.match(/[a-z]/i);
+        }
+    </script>
+    
+</body>
+</html>
