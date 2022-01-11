@@ -7,53 +7,46 @@
     <title>Clock</title>
 </head>
 <body onload="getSystemHour()">
-        <input type="text" id="hour"> : <input type="text" id="minute"> : <input type="text" id="second">
+    <center>
+        <h1>COUNTDOWN</h1>
+        <table>
+            <tr>
+                <th>DAYS</th><th>HOURS</th><th>MINUTES</th><th>SECONDS</th>
+            </tr>
+            <tr>
+                <td id="days"></td><td id="hours"></td><td id="minutes"></td><td id="seconds"></td>
+            </tr>
+        </table>
+    </center>
 
     <script>
-        const fin = new Date(); //Poner fecha fin
+            //Fin Date Project
+            const fin = new Date(2022, 6, 20, 0, 0, 0, 0); 
+            // One second
+            const s = 1000;
 
-        function getSystemHour(){            
-            const d = new Date(2022, month, day, 0, 0, 0, 0);//Completar
-            let h = addZero(d.getHours());
-            let m = addZero(d.getMinutes());
-            let s = addZero(d.getSeconds());
-
-            document.getElementById('hour').value = h;
-            document.getElementById('minute').value = m;
-            document.getElementById('second').value = s;
-
-            setInterval(incrementSec, 1000);
-
+        function getSystemHour(){               
+            setInterval(countdown, s);
         }
 
-        function incrementSec(){
-            let sec = document.getElementById('second');
-            let min = document.getElementById('minute');
-            let hou = document.getElementById('hour');
+        function countdown(){
+            document.write += 'hola';
+                let d = new Date();
+                let timeLaps = fin - d;
+        
 
-            auxs = sec.value;
-            auxs++;
-            auxm = min.value;
-            auxh = hou.value;
-
-            if(auxs >=60){
-                sec.value = addZero(0);
-                auxm++;                
-                if(auxm >= 60){
-                    min.value = addZero(0);
-                    auxh++;
-                    if(auxh >= 12){
-                        hou.value = 0;
-                    }else{
-                        hou.value = addZero(auxh);
-                    }
-                }else{
-                    min.value = addZero(auxm);
-                }
-            }else{
-                sec.value = addZero(auxs);
+                let days = addZero(Math.trunc(timeLaps/(24*60*60*s)));
+                timeLaps = timeLaps - days * (24*60*60*s);
+                let hours = addZero(Math.trunc(timeLaps/(60*60*s)));
+                timeLaps = timeLaps - hours * (60*60*s);
+                let minutes = addZero(Math.trunc(timeLaps/(60*s)));
+                timeLaps = timeLaps - minutes * (60*s);;
+                let seconds = addZero(Math.trunc(timeLaps / s));
                 
-            }
+                document.getElementById('days').innerHTML = days;
+                document.getElementById('hours').innerHTML = hours;
+                document.getElementById('minutes').innerHTML = minutes;
+                document.getElementById('seconds').innerHTML = seconds;
         }
 
         function addZero(i) {
