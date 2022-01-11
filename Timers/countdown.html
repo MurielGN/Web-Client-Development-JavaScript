@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+</head>
+<body onload="getSystemHour()">
+        <input type="text" id="hour"> : <input type="text" id="minute"> : <input type="text" id="second">
+
+    <script>
+        const fin = new Date(); //Poner fecha fin
+
+        function getSystemHour(){            
+            const d = new Date(2022, month, day, 0, 0, 0, 0);//Completar
+            let h = addZero(d.getHours());
+            let m = addZero(d.getMinutes());
+            let s = addZero(d.getSeconds());
+
+            document.getElementById('hour').value = h;
+            document.getElementById('minute').value = m;
+            document.getElementById('second').value = s;
+
+            setInterval(incrementSec, 1000);
+
+        }
+
+        function incrementSec(){
+            let sec = document.getElementById('second');
+            let min = document.getElementById('minute');
+            let hou = document.getElementById('hour');
+
+            auxs = sec.value;
+            auxs++;
+            auxm = min.value;
+            auxh = hou.value;
+
+            if(auxs >=60){
+                sec.value = addZero(0);
+                auxm++;                
+                if(auxm >= 60){
+                    min.value = addZero(0);
+                    auxh++;
+                    if(auxh >= 12){
+                        hou.value = 0;
+                    }else{
+                        hou.value = addZero(auxh);
+                    }
+                }else{
+                    min.value = addZero(auxm);
+                }
+            }else{
+                sec.value = addZero(auxs);
+                
+            }
+        }
+
+        function addZero(i) {
+            if (i < 10) {i = "0" + i}
+            return i;
+        }
+    </script>
+</body>
+</html>
