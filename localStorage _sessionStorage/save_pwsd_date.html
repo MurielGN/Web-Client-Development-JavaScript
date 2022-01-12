@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save password with date</title>
+</head>
+<body>
+    <script>
+        const name = document.getElementById('name');
+        const pswd = document.getElementById('pswd');
+
+        function sent(){
+            localStorage.setItem('name', name.value);
+            localStorage.setItem('pswd', pswd.value);
+
+            checkDate();
+        }
+
+        function checkDate(){
+            if(localStorage.date == 'undefined'){
+                let date = new Date();
+
+            }
+        }
+    </script>
+
+    Name: <input type="text" id="name"><br>
+    Password: <input type="text" id="pswd"><br>
+    <button onclick="show()">SHOW</button><br>
+    <button onclick="sent()">SENT</button><br>
+    <button onclick="viewDate()">VIEW DATE</button><br>
+</body>
+</html>
