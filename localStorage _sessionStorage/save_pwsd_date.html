@@ -7,29 +7,73 @@
     <title>Save password with date</title>
 </head>
 <body>
+
+    Name: <input type="text" id="name"><br><br>
+    Password: <input type="text" id="pswd"><br><br>
+    <button onclick="clearStorage()">CLEAR</button><br><br>
+    <button onclick="sent()">SENT</button><br><br>
+    <button onclick="viewDate()">VIEW DATE</button>
+
     <script>
-        const name = document.getElementById('name');
-        const pswd = document.getElementById('pswd');
+        const nameC = document.getElementById('name');
+        const pswdC = document.getElementById('pswd');
+        var mapUsers = new Map();
 
-        function sent(){
-            localStorage.setItem('name', name.value);
-            localStorage.setItem('pswd', pswd.value);
-
-            checkDate();
+        document.addEventListener("DOMContentLoaded", prepare, false);
+        function prepare(){
+            if(localStorage.mapUsers !== undefined){
+                //Load local Map on load
+                mapUsers = JSON.parse(localStorage.getItem('mapUsers'));
+            }
         }
 
-        function checkDate(){
-            if(localStorage.date == 'undefined'){
-                let date = new Date();
+        //Clas User
+        function User(name, pswd, date, hour, minute){
+            this.name = name;
+            this.pswd = pswd;
+            this.date = date;
+            this.hour = hour;
+            this.minute = minute;
 
+            User.prototype.toString = function UserrtoString(){
+                return "User: " + this.name + " Last log: " + addZero(this.date.getDate()) + " at " + addZero(this.date.getHours())+":"+
+                addZero(this.date.getMinutes());
             }
+
+        }
+
+        function sent(){
+            //Save all inf in User Object
+            let user = new User(nameC.value, pswdC.value, new Date().getDate(), new Date().getHours(), new Date().getMinutes());
+            //Upadte loca Map
+            mapUsers[user.name] = user;
+            //Update localStorage Map           
+            localStorage.setItem('mapUsers', JSON.stringify(mapUsers));
+        }
+
+        function viewDate(){
+            let msg = "";
+            //Take key of Map
+            let name = nameC.value;
+            //take user as a Object object, check and push alert with info
+            let user = mapUsers[name];
+            if(user){
+                msg ="User: " + mapUsers[name].name + " Last log: " + mapUsers[name].date + " at " + addZero(mapUsers[name].hour)+":"+addZero(mapUsers[name].minute);
+            }else{
+                msg = "User " + name + " don't exits. Please press SENT first";
+            }
+            alert(msg);
+        }
+
+        function clearStorage(){
+            localStorage.clear();
+        }
+
+        function addZero(i) {
+            if (i < 10) {i = "0" + i}
+            return i;
         }
     </script>
 
-    Name: <input type="text" id="name"><br>
-    Password: <input type="text" id="pswd"><br>
-    <button onclick="show()">SHOW</button><br>
-    <button onclick="sent()">SENT</button><br>
-    <button onclick="viewDate()">VIEW DATE</button><br>
 </body>
 </html>
