@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Galery</title>
+    <style>
+        img{
+            width: 800px;
+            height: auto;
+        }
+    </style>
+</head>
+<body onload="start()">
+    <center>
+        <h1>Basket Galery</h1>
+        <div class="image">
+            <img src="./img/basket_1.jpg" alt="">
+        </div>
+        <input type="radio" name="direccion" value="izquierda" checked>Izquierda <br>
+        <input type="radio" name="direccion" value="derecha">Derecha
+    </center>
+    
+    <script>
+        var i = 2;
+        const name = "./img/basket_";
+        const extension = ".jpg";
+
+        function start(){
+            setInterval(nextPag, 3000);
+        }
+        
+        function nextPag(){
+            //document.getElementsByName('direccion')[0].onchange =
+             document.getElementsByName('direccion')[0].checked.value;        
+            if(i == 5) i=1;
+            let dir = ocument.images[0].src = name + i + extension;
+alert(dir);
+            if(dir == izquierda){
+                i--;
+            }else{
+                i++;
+            }
+        }
+
+
+        //document.addEventListener('readystatechange',start);
+    </script>
+</body>
+</html>
