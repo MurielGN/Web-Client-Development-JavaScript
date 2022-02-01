@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change focus by Enter</title>
+</head>
+<body>
+    Nombre: <input type="text" id="nombre"><br>
+    Contraseña: <input type="text" id="psw"><br>
+    MENSAJES SERVIDOR
+    
+    <script>
+        var cont = 0;
+        function imprimirEvento(evento) {
+            if
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+				document.getElementById('nombre').addEventListener('keydown', imprimirEvento, true);
+                document.getElementById('psw').addEventListener('keydown', imprimirEvento, true);
+            }
+			}
+			document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of clicks</title>
+</head>
+<body>
+    <input type="button" id="button" value="Count">
+    <input type="text" id="result">
+    
+    <script>
+        var cont = 0;
+        function imprimirEvento(evento) {
+            cont++;
+            document.getElementById('result').value = cont;
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+				document.getElementById('button').addEventListener('click', imprimirEvento, true);				}
+			}
+			document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+</html>
