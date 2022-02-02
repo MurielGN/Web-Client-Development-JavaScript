@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of clicks</title>
+</head>
+<body>
+    <h1>CONTROLANDO EVENTENTOS DE TECLADO</h1>  <br>
+    <p><strong>Ejemplo JavaScript: pulse una tecla</strong></p>
+    
+    <script>
+        
+        function keysDown(evento) {
+            if(evento.code == "ShiftLeft" || evento.code == "CapsLock"){
+                return;
+            } 
+
+            if(evento.ctrlKey){
+                document.body.innerHTML += "<br>Pulsado ctrl ------------------";
+                return;
+            }
+            if(evento.altKey){
+                document.body.innerHTML += "<br>Pulsado alt ------------------";
+                return;
+            }
+            if(evento.code == "Enter"){
+                document.body.innerHTML += "<br>Pulsado Enter ------------------";
+                return;
+            } 
+
+            if(evento.code.startsWith('Key') || evento.code == "Digit0" || evento.code == "Numpad0"){
+                document.body.innerHTML += "<br>Tecla pulsada: "+evento.key+"------------------";
+            }else{
+                document.body.innerHTML += "<br>Pulsada tecla especial ------------------";
+            }
+        }
+
+        function keysUp(evento){
+            
+            if(evento.code == "ShiftLeft" || evento.code == "ShiftRight"){
+                document.body.innerHTML += "<br>Pulsado Shift ------------------";
+                return;
+            } 
+            if(evento.code == "CapsLock"){
+                document.body.innerHTML += "<br>Pulsado bloq mayus ------------------";
+                return;
+            } 
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+                document.body.addEventListener('keydown', keysDown, true);
+                document.body.addEventListener('keyup', keysUp, true);
+			}
+        }
+			document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+</html>

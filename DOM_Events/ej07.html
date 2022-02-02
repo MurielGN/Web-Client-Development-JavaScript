@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eje1 uso checkbox, botones y textbox </title>
+</head>
+
+<body>
+    <CENTER>
+        <form name="CONTROLES">
+            <a>DATOS DEL PEDIDO</a>
+            <p><b>Nombre y Apellidos:</b>
+                <input type="textbox" name="nombre">
+            <p><b>Forma de pago:</b><b>
+                    <input type="radio" name="GRUPORADIO" value="Mensual"></b>Mensual
+                <input type="radio" name="GRUPORADIO" value="Trimestral">Trimestral
+                <input type="radio" name="GRUPORADIO" value="Anual">Anual
+            </p>
+            <p><b>Accesorios</b><b>:
+                    <input type="checkbox" name="AIRE" value="Aire Acondicionado"></b>Aire Acondicionado
+                <input type="checkbox" name="ELEVALUNAS" value="Elevalunas Eléctrico">Elevalunas Eléctrico
+                <input type="checkbox" name="RADIO" value="RadioCD">RadioCD
+            </p>
+            <input type="button" value="Calcular" name="Calcular">
+            <b>TOTAL:</b> <input type="text" name="TOTAL" size="10" value=0 READONLY>Euros
+            <input type="button" value="Ver selecciones" name="VER">
+        </form>
+    </CENTER>
+
+    <script>
+
+        const priceStart = 500;
+        const paymentM = new Map([
+            ['Mensual', 1],
+            ['Trimestral', 0.9],
+            ['Anual', 0.80]
+        ]);
+        const accMap = new Map([
+            ['Aire Acondicionado', 50],
+            ['Elevalunas Eléctrico', 100],
+            ['RadioCD', 150]
+        ]);
+
+        var nameSurname = "";
+        var payment;
+        var accSet = new Set();
+
+        function addNameSurname(evento) {
+            nameSurname = evento.target.value;
+        }
+
+        function addPayment(evento) {
+            payment = evento.target.value;
+        }
+
+        function addAccessories(evento) {
+            accSet.add(evento.target.value);
+        }
+
+        function getPaymentM(){
+            return (paymentM.has(payment)) ?  paymentM.get(payment) : 1;
+        }
+
+        function addACC(){
+            let amount = 0;
+
+            accSet.forEach(function(value){
+                if (accMap.has(value)) {
+                    amount += accMap.get(value);
+                }
+            });
+            return amount;
+        }
+
+        function calculateTotal() {
+            let total = priceStart;
+            total += addACC();
+            total *= getPaymentM();
+            return total;
+        }
+
+        function showTotal(){
+            let total = calculateTotal();
+            document.CONTROLES.TOTAL.value = total;
+        }   
+
+        function showAll(evento) {
+            let msg = nameSurname + ".\n";
+            msg += payment + ".\n";
+            accSet.forEach((value)=>{  msg += value + ".\n";});
+            msg += "Total: " + calculateTotal();
+            alert(msg);
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+				document.CONTROLES.nombre.addEventListener('blur', addNameSurname, true);
+
+                for (let i = 0; i < document.CONTROLES.GRUPORADIO.length; i++) {
+                    document.CONTROLES.GRUPORADIO[i].addEventListener('change', addPayment, true);
+                }
+                
+                document.CONTROLES.AIRE.addEventListener('change', addAccessories, true);
+                document.CONTROLES.ELEVALUNAS.addEventListener('change', addAccessories, true);
+                document.CONTROLES.RADIO.addEventListener('change', addAccessories, true);
+
+                document.CONTROLES.Calcular.addEventListener('click', showTotal, true);
+                document.CONTROLES.VER.addEventListener('click', showAll, true);
+
+			
+            }
+		}
+
+		document.addEventListener('readystatechange', asignarEventos, false);
+
+    </script>
+
+</body>
+
+</html>

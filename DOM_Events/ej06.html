@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Ejemplo de parámetro de objeto de evento</title>
+</head>
+
+<body>
+
+    <p>Para ver las coordinadas del ratón haga clic en cualquier lugar de esta página.</p>
+
+    <script>
+
+        function imprimirEvento(evento) {
+            alert(evento.clientX+" "+evento.clientY);
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+                document.addEventListener('click', imprimirEvento, true);			
+            }				
+		}
+			
+        document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+</html>

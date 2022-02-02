@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Identifier</title>
+</head>
+<body>
+    
+    <script>
+        
+        function imprimirEvento(evento) {
+            alert(evento.code + " => " + evento.key);
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+				document.body.addEventListener('keydown', imprimirEvento, true);				}
+			}
+			document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+</html>

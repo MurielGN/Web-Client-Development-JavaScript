@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Otro de control rápido</title>
+</head>
+
+<body>
+    <label>Elija un sabor de nieve:
+        <select class="nieve">
+            <option value="">Seleccione Uno …</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="sardina">Sardina</option>
+            <option value="vainilla">Vainilla</option>
+        </select>
+    </label>
+    <div class="resultado"></div>
+
+    <script>
+
+        function imprimirEvento(evento) {
+            alert(evento.target);
+            document.querySelector('.resultado').textContent = evento.target.value;
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+				document.querySelector('.nieve').addEventListener('change', imprimirEvento, true);				}
+			}
+			document.addEventListener('readystatechange', asignarEventos, false);
+
+    </script>
+
+</body>
+
+</html>

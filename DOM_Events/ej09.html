@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminando oyentes de evento</title>
+</head>
+
+<body>
+    <textarea id='click-target' rows='5' cols='30'></textarea>
+    <div>
+        <p id='mouse-over-target'>Pasa el mouse sobre este párrafo</p>
+    </div>
+
+    <script>
+        var YellowWhite = true;
+        function changeBgCoor() {
+            //document.body.style.backgroundColor ="yellow";
+            let bodySyle = document.body.style;
+            (YellowWhite) ? bodySyle.backgroundColor="yellow" : bodySyle.backgroundColor="white";
+            YellowWhite = !YellowWhite;            
+        }
+        
+        function backEvent(){
+            changeBgCoor();
+            alert("evento anulado");
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+				document.getElementById('click-target').addEventListener('click', changeBgCoor, true);
+                document.getElementById('mouse-over-target').addEventListener('mouseover', backEvent, true);
+            }
+		}
+			document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+
+</html>

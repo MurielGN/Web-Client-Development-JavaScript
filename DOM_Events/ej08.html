@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of clicks</title>
+</head>
+<body>
+    
+    <script>
+
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function getRandomBgColor(event){
+            let red = getRandomInt(0,256);
+            let green = getRandomInt(0,256);
+            let blue = getRandomInt(0,256);
+
+            event.target.style.backgroundColor="rgb("+red+", "+green+", "+blue+")";
+        }
+        
+        function generarTabla(){
+            let tabla = document.createElement('table');
+            for (let i = 0; i < 5; i++) {
+                let tr = document.createElement('tr');
+                for (let j = 0; j < 5; j++) {
+                    let td = document.createElement('td');
+                    let text = document.createTextNode('Celda' + i);
+                    td.appendChild(text);
+                    tr.appendChild(td);               
+                }
+                tabla.appendChild(tr);
+            }
+            document.body.appendChild(tabla);
+
+            let tds = document.getElementsByTagName('td');
+            for (let i = 0; i < tds.length; i++) {
+                tds[i].addEventListener('click', getRandomBgColor, true);
+                
+            }
+        }
+
+        function imprimirEvento(evento) {
+            cont++;
+            document.getElementById('result').value = cont;
+        }
+
+        function asignarEventos(evento) {
+			if (document.readyState == 'complete') {
+                generarTabla();
+				document.getElementById('button').addEventListener('click', imprimirEvento, true);				}
+			}
+			document.addEventListener('readystatechange', asignarEventos, false);
+    </script>
+
+</body>
+</html>

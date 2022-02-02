@@ -13,8 +13,22 @@
     
     <script>
         var cont = 0;
+
+        function transmision(){
+            document.body.innerHTML += "<br><h3>Iniciando transmisión</h3>";
+        }
+        
         function imprimirEvento(evento) {
-            if
+            if(evento.keyCode == 13){
+                
+                if(evento.target.id == "nombre"){
+                    document.getElementById("psw").focus();
+                }
+
+                if(evento.target.id == "psw"){
+                    transmision();
+                }
+            }            
         }
 
         function asignarEventos(evento) {
